@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.p-orderlist-list {
+  max-height:650px;
+  
+}
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+.p-orderlist .p-orderlist-list .p-orderlist-item.p-highlight{
+  background-color: #1f2937;
+  
+}
