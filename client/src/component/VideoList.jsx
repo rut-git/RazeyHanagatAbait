@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import './Article.css';
 import { useGetAllVideosQuery, useDeleteVideoMutation, useGetVideoByRoleQuery } from '../app/videoApiSlice';
