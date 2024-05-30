@@ -84,7 +84,7 @@ const roles=DecodeToken()
                                 >
                                     <source src={`http://localhost:1260/upload/${element.path}`} type="video/mp4" />
                                 </video>
-                                {(roles === 'admin' || roles === 'secretary') && (
+                                {(roles?.roles === 'admin' || roles?.roles === 'secretary') && (
                                     <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
                                         <Button
                                             icon="pi pi-pencil"

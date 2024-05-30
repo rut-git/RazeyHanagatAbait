@@ -23,10 +23,10 @@ import Logout from './component/Logout'
 import Users from './component/Users'
 import store from './store'
 import ArticleListAdmin from './component/ArtlcleListAdmin';
-import AdminDialogue from './component/AdminDialogue';
+// import AdminDialogue from './component/AdminDialogue';
 import ShowDiscussion from './component/ShowDiscussion';
 import UsersDialogue from './component/UsersDialogue';
-import NewDiscussion from './component/NewDiscussion';
+// import NewDiscussion from './component/NewDiscussion';
 import DiscussionButton from './component/Discussionbutton'
 import ShowDialogue from './component/ShowDialogue'
 // import RefreshDialoge from './component/RefreshDialoge'
@@ -71,7 +71,6 @@ function App() {
           <Route path="/ShowDialogue" element={<ShowDialogue />} />
           <Route path="/UpdateUser" element={<UpdateUser/>} />
           <Route path="/users" element={<Users/>} />
-          <Route path="/adminDialogue" element={<AdminDialogue/>} />
           <Route path="/ShowDiscussion" element={<ShowDiscussion/>} />
           <Route path="/UsersDialogue" element={<UsersDialogue/>} />
           <Route path="/discussionButton" element={<DiscussionButton/>} />
