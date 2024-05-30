@@ -44,7 +44,7 @@ const PersonalArea = (props) => {
     
 
     useEffect(() => {
-        if (roles == "admin"||roles=="secretary") {
+        if (roles.roles == "admin"||roles.roles=="secretary") {
             navigate("/personalAreaAdmin")
         }
         // else {

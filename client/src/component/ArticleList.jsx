@@ -33,7 +33,7 @@ const roles=DecodeToken()
     const { data, isLoading, isError, isSuccess, error, refetch } = useGetArticleByRoleQuery();
 
     useEffect(() => {
-        if (roles == "admin") {
+        if (roles.roles == "admin"||roles.roles == "secretary") {
             navigate("/articleListAdmin")
         }
         
