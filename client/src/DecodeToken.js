@@ -1,7 +1,6 @@
 import { jwtDecode } from 'jwt-decode'
 
 const DecodeToken = () => {
-    debugger
     const token = localStorage.getItem("token")
     
     

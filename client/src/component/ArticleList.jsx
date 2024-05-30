@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Article.css'
 import { useGetArticleByRoleQuery } from '../app/articleApiSlice'
 import Article from './Article'
@@ -8,9 +8,13 @@ import DecodeToken from '../DecodeToken'
 import axios from "axios";
 export default function ArticleList() {
     
-    const { data, isError, isSuccess, refetch } = useGetArticleByRoleQuery()
-    const navigate = useNavigate()
+const roles=DecodeToken()
+    const navigate = useNavigate();
+  
 
+    const [ready, setReady] = useState(false)
+
+    console.log(roles);
     const Request = async () => {
 
         const ans = await axios("http://localhost:1260/api/functionToken/" + localStorage.getItem("token"))
@@ -21,18 +25,23 @@ export default function ArticleList() {
         }
     }
     useEffect(() => {
+
         Request();
 
+        setReady(true)
     }, [])
+    useEffect(() => {
 
+        // roles = DecodeToken()
+        console.log(roles);
+    }, [ready])
+    const { data, isLoading, isError, isSuccess, error, refetch } = useGetArticleByRoleQuery();
     useEffect(() => {
         if (isSuccess) {
-            refetch()
+
+            console.log(data);
         }
     }, [isSuccess])
-
-    const {roles} = DecodeToken()
-
     useEffect(() => {
         if (roles == "admin") {
             navigate("/articleListAdmin")

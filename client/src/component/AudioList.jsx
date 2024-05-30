@@ -9,18 +9,53 @@ import axios from "axios";
 import DecodeToken from '../DecodeToken'
 
 export default function AudioList() {
-    const {roles}=DecodeToken()
-    const { data: audios, isLoading, isError, isSuccess, error, refetch } = useGetAudioByRoleQuery(roles);
-    const [deleteAudio, { isError: isDeleteError, isSuccess: isDeleteSuccess, error: deleteError }] = useDeleteAudioMutation();
+//     const {roles}=DecodeToken()
+//     const { data: audios, isLoading, isError, isSuccess, error, refetch } = useGetAudioByRoleQuery(roles);
+//     const [deleteAudio, { isError: isDeleteError, isSuccess: isDeleteSuccess, error: deleteError }] = useDeleteAudioMutation();
 
-    const navigate = useNavigate();
-    // const [userRole, setUserRole] = useState('');
+//     const navigate = useNavigate();
+//     // const [userRole, setUserRole] = useState('');
    
     
 
-   const userRole=localStorage.getItem('role') ;
+//    const userRole=localStorage.getItem('role') ;
 
- 
+const [deleteAudio, { isError: isDeleteError, isSuccess: isDeleteSuccess, error: deleteError }] = useDeleteAudioMutation();
+const roles=DecodeToken()
+    const navigate = useNavigate();
+    const [userRole, setUserRole] = useState('');
+
+    const [ready, setReady] = useState(false)
+
+    // let roles = null;
+    console.log(roles);
+    const Request = async () => {
+
+        const ans = await axios("http://localhost:1260/api/functionToken/" + localStorage.getItem("token"))
+
+        if (ans.data.ans == false) {
+
+            navigate("/login")
+        }
+    }
+    useEffect(() => {
+
+        Request();
+
+        setReady(true)
+    }, [])
+    useEffect(() => {
+
+        // roles = DecodeToken()
+        console.log(roles);
+    }, [ready])
+    const { data: audios, isLoading, isError, isSuccess, error, refetch } = useGetAudioByRoleQuery(roles?.roles);
+    useEffect(() => {
+        if (isSuccess) {
+
+            console.log(audios);
+        }
+    }, [isSuccess])
    
     // useEffect(() => {
     //     if (!userRole || (userRole !== 'admin' && userRole !== 'secretary')) {
@@ -57,7 +92,7 @@ export default function AudioList() {
     return (
         <div>
             <br />
-            {userRole === 'admin' || userRole === 'secretary' ? (
+            {roles?.roles === 'admin' || roles?.roles === 'secretary' ? (
                 <Button onClick={handleAddAudioClick}>Add Audio</Button>
             ) : null}
             {isError && console.log(error)}
@@ -82,7 +117,7 @@ export default function AudioList() {
                                 <source src={`http://localhost:1260/uploadAudio/${element.path}`} type="audio/wav"/>
                             </audio>
                  
-                            {(userRole === 'admin' || userRole === 'secretary') && (
+                            {(roles?.roles === 'admin' || roles?.roles === 'secretary') && (
                                 <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
                                     <Button
                                         icon="pi pi-pencil"

@@ -8,22 +8,17 @@ import axios from "axios";
 
 export default function VideoList() {
     // const { data: videos, isLoading, isError, isSuccess, error, refetch } = useGetAllVideosQuery();
-    const { data: videos, isLoading, isError, isSuccess, error, refetch } = useGetVideoByRoleQuery(roles);
     // console.log(roles);
-    useEffect(() => {
-        if (isSuccess) {
-
-            console.log(videos);
-        }
-    }, [isSuccess])
+    
     const [deleteVideo, { isError: isDeleteError, isSuccess: isDeleteSuccess, error: deleteError }] = useDeleteVideoMutation();
-
+const roles=DecodeToken()
     const navigate = useNavigate();
     const [userRole, setUserRole] = useState('');
 
     const [ready, setReady] = useState(false)
 
-    let roles = null;
+    // let roles = null;
+    console.log(roles);
     const Request = async () => {
 
         const ans = await axios("http://localhost:1260/api/functionToken/" + localStorage.getItem("token"))
@@ -41,8 +36,17 @@ export default function VideoList() {
     }, [])
     useEffect(() => {
 
-        roles = DecodeToken()
+        // roles = DecodeToken()
+        console.log(roles);
     }, [ready])
+    const { data: videos, isLoading, isError, isSuccess, error, refetch } = useGetVideoByRoleQuery(roles?.roles);
+    useEffect(() => {
+        if (isSuccess) {
+
+            console.log(videos);
+        }
+    }, [isSuccess])
+    // const roles=DecodeToken()
     const handleAddVideoClick = () => {
         navigate('../addVideo');
     };
@@ -70,7 +74,7 @@ export default function VideoList() {
     return (
         <div>
              <br />
-                {roles === 'admin' || roles === 'secretary' ? (
+               {roles?.roles === 'admin' || roles?.roles === 'secretary' ? (
                     <Button onClick={handleAddVideoClick}>Add Video</Button>
                 ) : null}
                 {isError && console.log(error)}
@@ -80,13 +84,13 @@ export default function VideoList() {
                         videos.map((element) => (
                             <div key={element._id} style={{ position: 'relative', flex: '33%', margin: '10px' }}>
                                 <div style={{ textAlign: 'center', marginBottom: '10px' }}>
-                                    <h3>{element.name}</h3> {/* הצגת שם הסרטה */}
+                                    <h3>{element.name}</h3> 
                                 </div>
                                 <video
                                     width="500"
                                     height="240"
                                     controls
-                                    onContextMenu={(e) => e.preventDefault()} // Prevent right-click menu
+                                    onContextMenu={(e) => e.preventDefault()} 
                                     controlsList='nodownload'
                                 >
                                     <source src={`http://localhost:1260/upload/${element.path}`} type="video/mp4" />
@@ -109,7 +113,7 @@ export default function VideoList() {
                             </div>
                         ))}
                 </div>
-            
-        </div>
+              
+        </div> 
     );
 }
