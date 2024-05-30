@@ -32,41 +32,23 @@ export default function NewDiscussion() {
 
     useEffect(() => {
         setDiscussions(data)
-        console.log(data);
     }, [data]);
 
-    // const getSeverity = (discussion) => {
-    //     switch (discussion.inventoryStatus) {
-    //         case 'INSTOCK':
-    //             return 'success';
-
-    //         case 'LOWSTOCK':
-    //             return 'warning';
-
-    //         case 'OUTOFSTOCK':
-    //             return 'danger';
-
-    //         default:
-    //             return null;
-    //     }
-    // };
+   
 
     const listItem = (discussion, index) => {
         return (
             <div className="col-12" key={discussion._id}>
                 <div className={classNames('flex flex-column xl:flex-row xl:align-items-start p-4 gap-4', { 'border-top-1 surface-border': index !== 0 })}>
                     <img className="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" src={image} alt={discussion.discussionName} style={{width:'160px',height:'120px'}}/>
-                    {/* <div className="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" style={{width:'160px',height:'120px',backgroundColor:"blue"}}>{discussion.discussionName}</div> */}
                     <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                         <div className="flex flex-column align-items-center sm:align-items-start gap-3">
                             <div className="text-2xl font-bold text-900">{discussion.discussionName}</div>
-                            {/* <Rating value={discussion.discussionName} readOnly cancel={false}></Rating> */}
                             <div className="flex align-items-center gap-3">
                                 <span className="flex align-items-center gap-2">
                                     <i className="pi pi-tag"></i>
                                     <span className="font-semibold">{discussion.discussionName}</span>
                                 </span>
-                                {/* <Tag value={discussion.inventoryStatus} severity={getSeverity(discussion)}></Tag> */}
                             </div>
                         </div>
                         <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
@@ -88,14 +70,11 @@ export default function NewDiscussion() {
                             <i className="pi pi-tag"></i>
                             <span className="font-semibold">{discussion.discussionName}</span>
                         </div>
-                        {/* <Tag value={discussion.inventoryStatus} severity={getSeverity(discussion)}></Tag> */}
                     </div>
                     <div className="flex flex-column align-items-center gap-3 py-5">
                         <img className="w-9 shadow-2 border-round" src={image} alt={discussion.discussionName} style={{width:'160px',height:'120px'}}/>
-                        {/* <div className="w-9 shadow-2 border-round" style={{width:'160px',height:'120px',backgroundColor:"blue"}}>{discussion.discussionName}</div> */}
 
                         <div className="text-2xl font-bold">{discussion.discussionName}</div>
-                        {/* <Rating value={discussion.discussionName} readOnly cancel={false}></Rating> */}
                     </div>
                     <div className="flex align-items-center justify-content-between">
                         <span className="text-2xl font-semibold">${discussion.discussionName}</span>
@@ -113,7 +92,6 @@ export default function NewDiscussion() {
 
         if (layout === 'list') return listItem(product, index);
         else if (layout === 'grid') return gridItem(product);
-        // return gridItem(product);
     };
 
     const listTemplate = (products, layout) => {

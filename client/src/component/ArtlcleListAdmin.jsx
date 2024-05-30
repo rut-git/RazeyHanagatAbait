@@ -44,7 +44,6 @@ export default function ArticleListAdmin() {
                 data.map(element =>
                     <ArticleAdmin name={element} refetch={refetch}/>
                 )
-                //    console.log("data") 
             }
 
         </div>

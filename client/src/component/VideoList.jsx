@@ -7,8 +7,7 @@ import DecodeToken from '../DecodeToken'
 import axios from "axios";
 
 export default function VideoList() {
-    // const { data: videos, isLoading, isError, isSuccess, error, refetch } = useGetAllVideosQuery();
-    // console.log(roles);
+
     
     const [deleteVideo, { isError: isDeleteError, isSuccess: isDeleteSuccess, error: deleteError }] = useDeleteVideoMutation();
 const roles=DecodeToken()
@@ -17,8 +16,7 @@ const roles=DecodeToken()
 
     const [ready, setReady] = useState(false)
 
-    // let roles = null;
-    console.log(roles);
+
     const Request = async () => {
 
         const ans = await axios("http://localhost:1260/api/functionToken/" + localStorage.getItem("token"))
@@ -36,17 +34,9 @@ const roles=DecodeToken()
     }, [])
     useEffect(() => {
 
-        // roles = DecodeToken()
-        console.log(roles);
     }, [ready])
     const { data: videos, isLoading, isError, isSuccess, error, refetch } = useGetVideoByRoleQuery(roles?.roles);
-    useEffect(() => {
-        if (isSuccess) {
-
-            console.log(videos);
-        }
-    }, [isSuccess])
-    // const roles=DecodeToken()
+ 
     const handleAddVideoClick = () => {
         navigate('../addVideo');
     };
@@ -77,8 +67,7 @@ const roles=DecodeToken()
                {roles?.roles === 'admin' || roles?.roles === 'secretary' ? (
                     <Button onClick={handleAddVideoClick}>Add Video</Button>
                 ) : null}
-                {isError && console.log(error)}
-                {isSuccess && console.log(videos)}
+       
                 <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                     {isSuccess &&
                         videos.map((element) => (

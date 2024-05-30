@@ -17,9 +17,7 @@ const navigate=useNavigate()
    
 
     const deleteUser=(item)=>{
-        console.log(item._id);
         const id=item._id
-        console.log(data);
         delete1(id);
         
     }

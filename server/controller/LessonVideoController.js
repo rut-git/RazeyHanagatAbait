@@ -17,7 +17,6 @@ const createNewLessonVideo = async (req, res) => {
 
     const { name, role } = req.body;
     if (!name || !role) {
-        console.log(role);
         return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -104,28 +103,12 @@ const getLessonVideoByRole = async (req, res) => {
 
 }
 
-
-// const deleteLessonVideo = async (req, res) => {
-//     if (req.user.roles != 'admin' && req.user.roles != 'secretary') {
-//         return res.status(400).json({ message: "not permissiend" })
-//     }
-//     const { id } = req.body
-//     console.log(id);
-//     const lessonVideo = await LessonVideo.findById(id).exec()
-
-//     if (!lessonVideo) {
-//         return res.status(400).json({ message: "LessonVideo not found" })
-//     }
-//     const result = await lessonVideo.deleteOne()
-//     res.json(`LessonVideo ${LessonVideo.name} ID ${LessonVideo.id} deleted`)
-// }
 const deleteLessonVideo = async (req, res) => {
     if (req.user.roles !== 'admin' && req.user.roles !== 'secretary') {
         return res.status(400).json({ message: "Not permitted" });
     }
 
     const { id } = req.params; // קבלת ה-id מה-params של ה-url
-    console.log(id);
 
     try {
         const lessonVideo = await LessonVideo.findById(id).exec();

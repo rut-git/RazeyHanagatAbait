@@ -12,26 +12,22 @@ connectDB()
 
 app.use(cors(corsOptions))
 app.use(express.json())
-// app.use(express.static("public"))
 app.use('/upload', express.static(__dirname + '/public/upload'));
 app.use('/uploadAudio', express.static(__dirname + '/public/uploadAudio'));
 
 
 
 
-// app.use(express.static(__dirname));
 
 app.get('/upload/:fileName', (req, res) => {
     
     const {fileName}=req.params
-    // console.log("fileName "+ fileName);
     const imagePath = path.join(__dirname, '/public/upload/',fileName);
     res.sendFile(imagePath);
 });
 app.get('/uploadAudio/:fileName', (req, res) => {
     
     const {fileName}=req.params
-    // console.log("fileName "+ fileName);
     const imagePath = path.join(__dirname, '/public/uploadAudio/',fileName);
     res.sendFile(imagePath);
 });

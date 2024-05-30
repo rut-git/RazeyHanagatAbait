@@ -61,7 +61,6 @@ const ShowDiscussion = () => {
     const navigate=useNavigate()
     const [updateDiscussion, { isError, isSuccess, error, isLoading, data }] = useUpdateDiscussionMutation()
     const [buttonValue, setButtonValue] = useState('')
-    // console.log(refetch);
     const sendMessage =  () => {
         const id = discussion._id
         const { _id } = DecodeToken()
@@ -79,7 +78,6 @@ const ShowDiscussion = () => {
         navigate('/discussions',{state:{refe:'true',discussion:data}})
 }
     },[isSuccess])
-    console.log(discussion?.discussion);
     return (
         <div style={{ width: '100%', alignItems: 'center' }}>
             <br /><br /><br />

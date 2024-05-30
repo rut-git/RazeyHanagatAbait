@@ -5,7 +5,6 @@ const UploadVideo=(props)=>{
 
 return(
     <>
-    {console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")}
     </>
 )
 }

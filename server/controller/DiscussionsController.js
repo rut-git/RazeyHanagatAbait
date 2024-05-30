@@ -1,7 +1,6 @@
 const Discussions = require("../models/Discussions")
 const Users = require("../models/Users")
 const getAllDiscussions = async (req, res) => {
-        console.log("aaaaaaaaaaaaaaaaaaaaa");
 
     if (req.user.roles != 'admin' && req.user.roles != 'secretary' && req.user.roles != 'leap') {
         return res.status(400).json({ message: "not permissiend" })
@@ -10,20 +9,16 @@ const getAllDiscussions = async (req, res) => {
   
     for (let i = 0; i < discussions.length; i++) {
         for (let j = 0; j < discussions[i].discussion.length; j++) {
-            console.log(discussions[i].discussion[j].userId);
             let user = await Users.findById(discussions[i].discussion[j].userId).lean();
             if(user){
                 discussions[i].discussion[j].name = user.name;
             }
-            // discussions[i].discussion[j].name = user.name;
-            // console.log("discussions[i].discussion[j].name: ",discussions[i].discussion[j].name);
-            //delete discussions[i].discussion[j].userId; // Remove the userId field if not needed
+
         }
     }
     if (!discussions?.length) {
         return res.status(400).json({ message: "no Discussions found...." })
     }
-    console.log("discussions: ",discussions.discussion);
     res.json(discussions)
 }
 
@@ -60,7 +55,6 @@ const upDateDiscussion = async (req, res) => {
     }
     const {id}=req.params
     const { message,userId} = req.body
-    // console.log( message,userId);
     if (!id ||! message) {
         return res.status(400).json({ message: "fields are required" })
     }
@@ -70,8 +64,6 @@ const upDateDiscussion = async (req, res) => {
         for (let j = 0; j < discussions[i].discussion.length; j++) {
             let user = await Users.findById(discussions[i].discussion[j].userId).lean();
             discussions[i].discussion[j].name = user.name;
-            console.log("discussions[i].discussion[j].name: ",discussions[i].discussion[j].name);
-            //delete discussions[i].discussion[j].userId; // Remove the userId field if not needed
         }
     }
 
@@ -80,27 +72,9 @@ const upDateDiscussion = async (req, res) => {
     }
     const arr=[...discussions.discussion,{message,userId}]
     discussions.discussion=arr
-    // discussions.read=false
    const updateDiscussions= await discussions.save()
    res.json(updateDiscussions)
 }
-
-// const upDateDiscussionRead = async (req, res) => {
-//     if (req.user.roles != 'admin' && req.user.roles != 'secretary' && req.user.roles != 'leap') {
-//         return res.status(400).json({ message: "not permissiend" })
-//     }
-//     const {id}=req.params
-//     const {read}=req.body
-//     const discussions = await Discussions.findById(id).exec()
-
-//     if (!discussions) {
-//         return res.status(400).json({ message: "Discussion not found" })
-//     }
-//     discussions.read=read
-//    const updateDiscussions= await discussions.save()
-//    res.json(`${updateDiscussions.discussionName} updated`)
-// }
-
 
 const getDiscussionByName = async (req, res) => {
     if (req.user.roles != 'admin' && req.user.roles != 'secretary' && req.user.roles != 'leap') {
@@ -112,8 +86,6 @@ const getDiscussionByName = async (req, res) => {
         for (let j = 0; j < discussions[i].discussion.length; j++) {
             let user = await Users.findById(discussions[i].discussion[j].userId).lean();
             discussions[i].discussion[j].name = user.name;
-            console.log("discussions[i].discussion[j].name: ",discussions[i].discussion[j].name);
-            //delete discussions[i].discussion[j].userId; // Remove the userId field if not needed
         }
     }
 

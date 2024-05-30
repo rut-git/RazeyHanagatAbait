@@ -17,7 +17,6 @@ export default function AddDialog(props) {
         const message = document.getElementById("message").value
         const {_id}=DecodeToken()
         const obj = {dialogueName ,dialogue:{userId:_id,message:message},userId:_id,workerStatus:props.role}
-        console.log(obj);
         CreateDialog(obj)
         props.refetch()
 

@@ -16,7 +16,6 @@ const createNewLessonAudio = async (req, res) => {
 
     const { name, role } = req.body;
     if (!name || !role) {
-        console.log(role);
         return res.status(400).json({ message: "All fields are required" });
     }
 

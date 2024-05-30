@@ -22,7 +22,6 @@ const [add, setAdd]=useState(false)
         
         
         const ans = await axios("http://localhost:1260/api/functionToken/" + localStorage.getItem("token"))
-        console.log(ans);
         if (ans.data.ans == false) {
             navigate("/login")
         }
@@ -33,31 +32,17 @@ const [add, setAdd]=useState(false)
     }, [])
 
 
-    // const {role} = DecodeToken()
-
-    // useEffect(() => {
-        
-    //     if (role== "admin") {
-    //         navigate("/personalAreaAdmin")
-    //     }
-    //     else {
-    //         navigate("/login")
-    //     }
-
-    // }, [role])
-
+  
     return(
         <div style={{marginLeft:'30%'}}>
    
 
 
         <br/><br/>
-        {/* {add||<Button label='שליחת הודעה'  onClick={() =>{setAdd(true)}} />} */}
        
         {add &&  <AddDialog refetch={refetch} role={roles}/>}
         <br/><br/><br/>
         {isSuccess && data.map(element=><Dialogbutton dialogue={element} refetch={refetch}/>)}
-        {/* {console.log(data[1])} */}
         </div>
             ) 
 }

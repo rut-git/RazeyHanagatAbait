@@ -49,7 +49,6 @@ export default function AddVideo() {
 
         try {
             const response = await uploadAudio(formData).unwrap();
-            console.log('Upload response:', response);
             toast.current.show({ severity: 'success', summary: 'Success', detail: 'Audio uploaded successfully' });
             reset();
             setSelectedFile(null); // Clear the selected file after upload

@@ -26,7 +26,6 @@ export default function HeadlessDemo() {
 
     }
 const onclickCancel=(e)=>{
-    // hide(e)
     navigate('/')
 }
     useEffect(()=>{
@@ -42,7 +41,6 @@ const onclickCancel=(e)=>{
 
         useEffect(()=>{
             if(isError){
-            console.log(error);
             alert("אינך מורשה")
             navigate("/")
             }
@@ -51,7 +49,6 @@ const onclickCancel=(e)=>{
 
     return (
         <div className="card flex justify-content-center">
-            {/* <Button label="כניסת משתמש"  onClick={() => setVisible(true)}/> */}
             <Dialog
                 visible={visible}
                 style={{direction:'rtl' ,padding:'20px'}}
@@ -60,7 +57,6 @@ const onclickCancel=(e)=>{
                     setVisible(false)}}
                 content={({ hide }) => (
                     <div className="flex flex-column px-8 py-5 gap-4" >
-                        {/* <span >הוספת משתמש</span> */}
                         <div className="inline-flex flex-column gap-2" >
                             <label htmlFor="username" className="text-primary-50 font-semibold" >
                              שם משתמש  
@@ -73,7 +69,6 @@ const onclickCancel=(e)=>{
                             <label htmlFor="username" className="text-primary-50 font-semibold" >
                                  סיסמה
                             </label>
-                            {/* <Password value={value} onChange={(e) => setValue(e.target.value)} toggleMask /> */}
                             <InputText id="password" label="Password" className="bg-white-alpha-20 border-none p-3 text-primary-50" type="password" style={{marginRight:'10.5%'}}></InputText>
                         </div>
                         <div className="flex align-items-center gap-2">

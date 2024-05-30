@@ -59,9 +59,7 @@ import { useState } from 'react';
 import { InputTextarea } from 'primereact/inputtextarea';
 
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
 
-// import axios from "axios";
 const Discussions = () => {
     const navigate=useNavigate()
     const location = useLocation()
@@ -84,9 +82,7 @@ useEffect(() => {
     if (refe) {
         // render()
         
-        console.log("before ShowDiscussion refe is ", refe);
         navigate(`/discussionButton`, { state: { discussion: discussion}, name: discussion?.userId?.name  })
-        console.log("after ShowDiscussion refe is ", refe);
     }
 }, [])
 const { data, isError, isSuccess, refetch } = useGetDiscussionsQuery()

@@ -3,13 +3,10 @@ import { useGetAudioByRoleQuery } from '../app/audioApiSlice';
 import React, { useEffect, useState } from "react";
 
 const ShowAudio = (props) => {
-    // קבלת ה-ROLE מ-localStorage
     const role = localStorage.getItem("role");
 
-    // קריאה לפונקציה getVideo עם role
     const { data, isError, isSuccess, error } = useGetAudioByRoleQuery();
     
-    // מניעת תפריט קליק ימני על הקובץ
     const preventContextMenu = (event) => {
         event.preventDefault();
     };
@@ -18,8 +15,6 @@ const ShowAudio = (props) => {
 
     return (
         <div>
-            {isSuccess && console.log("Audio fetched successfully")}
-            {isError && console.log("Error fetching audio")}
             <audio
                 controls 
                 controlsList="nodownload" 

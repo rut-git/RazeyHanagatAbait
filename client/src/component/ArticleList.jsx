@@ -14,7 +14,6 @@ const roles=DecodeToken()
 
     const [ready, setReady] = useState(false)
 
-    console.log(roles);
     const Request = async () => {
 
         const ans = await axios("http://localhost:1260/api/functionToken/" + localStorage.getItem("token"))
@@ -30,18 +29,9 @@ const roles=DecodeToken()
 
         setReady(true)
     }, [])
-    useEffect(() => {
-
-        // roles = DecodeToken()
-        console.log(roles);
-    }, [ready])
+  
     const { data, isLoading, isError, isSuccess, error, refetch } = useGetArticleByRoleQuery();
-    useEffect(() => {
-        if (isSuccess) {
 
-            console.log(data);
-        }
-    }, [isSuccess])
     useEffect(() => {
         if (roles == "admin") {
             navigate("/articleListAdmin")
@@ -58,7 +48,6 @@ const roles=DecodeToken()
                 data.map(element =>
                     <Article name={element} />
                 )
-                //    console.log("data") 
             }
 
         </div>

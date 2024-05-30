@@ -43,15 +43,6 @@ const {_id}=DecodeToken()
 
     const {roles} = DecodeToken()
 
-    // useEffect(() => {
-    //     if (roles == "admin") {
-    //         navigate("/personalAreaAdmin")
-    //     }
-    //     else {
-    //         navigate("/login")
-    //     }
-
-    // }, [roles])
 
     return(
         <div style={{marginLeft:'30%'}}>
@@ -63,8 +54,7 @@ const {_id}=DecodeToken()
         <br/><br/><br/>
     
         {dataShow && filteredData?.map(element=><Dialogbutton dialogue={element} refetch={refetch}/>)}
-        {/* {setDataShow && console.log("asdfghj",data)} */}
-        {/* {console.log(data[1])} */}
+    
         </div>
             ) 
 }

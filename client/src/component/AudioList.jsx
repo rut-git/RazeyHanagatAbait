@@ -9,16 +9,7 @@ import axios from "axios";
 import DecodeToken from '../DecodeToken'
 
 export default function AudioList() {
-//     const {roles}=DecodeToken()
-//     const { data: audios, isLoading, isError, isSuccess, error, refetch } = useGetAudioByRoleQuery(roles);
-//     const [deleteAudio, { isError: isDeleteError, isSuccess: isDeleteSuccess, error: deleteError }] = useDeleteAudioMutation();
 
-//     const navigate = useNavigate();
-//     // const [userRole, setUserRole] = useState('');
-   
-    
-
-//    const userRole=localStorage.getItem('role') ;
 
 const [deleteAudio, { isError: isDeleteError, isSuccess: isDeleteSuccess, error: deleteError }] = useDeleteAudioMutation();
 const roles=DecodeToken()
@@ -27,8 +18,7 @@ const roles=DecodeToken()
 
     const [ready, setReady] = useState(false)
 
-    // let roles = null;
-    console.log(roles);
+
     const Request = async () => {
 
         const ans = await axios("http://localhost:1260/api/functionToken/" + localStorage.getItem("token"))
@@ -47,13 +37,11 @@ const roles=DecodeToken()
     useEffect(() => {
 
         // roles = DecodeToken()
-        console.log(roles);
     }, [ready])
     const { data: audios, isLoading, isError, isSuccess, error, refetch } = useGetAudioByRoleQuery(roles?.roles);
     useEffect(() => {
         if (isSuccess) {
 
-            console.log(audios);
         }
     }, [isSuccess])
    
@@ -95,8 +83,7 @@ const roles=DecodeToken()
             {roles?.roles === 'admin' || roles?.roles === 'secretary' ? (
                 <Button onClick={handleAddAudioClick}>Add Audio</Button>
             ) : null}
-            {isError && console.log(error)}
-            {/* {isSuccess && console.log(audios)} */}
+          
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {isSuccess &&
                     audios.map((element) => (

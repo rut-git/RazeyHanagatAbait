@@ -31,11 +31,7 @@ const ShowDialogue = () => {
         }
     }, [data1, isSuccess1]);
 
-    useEffect(() => {
-        if (isSuccess) {
-            console.log("data", data);
-        }
-    }, [isSuccess, data]);
+
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {

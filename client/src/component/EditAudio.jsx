@@ -48,7 +48,6 @@ export default function EditAudio() {
     }, [audio, setValue]);
 
     const customUpload = async () => {
-        console.log("customUpload triggered");
         const formData = new FormData();
         formData.append('name', valueName); // הוספת השם המתוקן
         formData.append('role', selectedRole ? selectedRole.code : audio.role);
@@ -56,13 +55,11 @@ export default function EditAudio() {
 
         try {
             const response = await updateAudio(formData).unwrap();
-            console.log('Upload response:', response);
             reset();
             setSelectedFile(null); // Clear the selected file after upload
             setMoveList(true);
         } catch (uploadError) {
             console.error('Upload error:', uploadError);
-            console.log(formData);
         }
     };
 

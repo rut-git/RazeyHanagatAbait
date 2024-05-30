@@ -2,7 +2,6 @@ const Users = require("../models/Users")
 
 const getAllUsers = async (req, res) => {
     if (req.user.roles != 'admin' && req.user.roles != 'secretary') {
-        console.log(req.user.roles);
         return res.status(400).json({ message: "not permissiend" })
     }
     const users = await Users.find({}).lean()

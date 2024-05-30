@@ -31,18 +31,11 @@ const Discussions = () => {
 
     }, [])
     
-    // console.log(discussion?discussion:'aaa'); 
-    // const { data: data1, isError: isError1, isSuccess: isSuccess1 } = useGetDiscussionByNameQuery(discussion?.name)
-    // useEffect(() => {
-    //     console.log(data1);
-    // }, [isSuccess1])
+
     useEffect(() => {
     if (refe) {
-        // render()
         
-        console.log("before ShowDiscussion refe is ", refe);
         navigate(`/discussionButton`, { state: { discussion: discussion, name: discussion?.userId?.name } })
-        console.log("after ShowDiscussion refe is ", refe);
     }
 }, [])
 
@@ -51,13 +44,7 @@ const Discussions = () => {
 
         <div style={{ marginLeft: '30%' }}>
 
-            {/* <br /><br /> */}
-            {/* {add || <Button label='הוסף דיון' onClick={() => setAdd(true)} />} */}
-            {/* {add && <AddDiscussion refetch={refetch} />} */}
-            {/* <br /><br /><br /> */}
-            {/* {data?console.log(data):"aaa"}
-            {data?data.map(() => { console.log(data) }):"a"} */}
-            {/* {data?.map(element=>console.log(element?.userId.name?element.userId.name:"aaa"))} */}
+           
             <br/><br/>
             {add ||<Button label='הוסף דיון'  onClick={() =>setAdd(true)} />}
 

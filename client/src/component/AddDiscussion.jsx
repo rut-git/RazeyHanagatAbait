@@ -18,7 +18,6 @@ export default function AddDiscussion(props) {
         const message = document.getElementById("message").value
         const {_id}=DecodeToken()
         const obj = {discussionName ,discussion:{userId:_id,message: message},userId:_id}
-        console.log(obj);
         CreateDiscussion(obj)
 
         props.refetch()
