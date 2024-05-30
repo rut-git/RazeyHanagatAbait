@@ -1,13 +1,10 @@
 import React from 'react';
-import { Card } from 'primereact/card';
 import './Article.css'
-import { useGetArticleByNameQuery } from '../app/articleApiSlice'
-import { useParams } from 'react-router-dom'
+
 
 
 
 import { Accordion, AccordionTab } from 'primereact/accordion';
-import { Panel } from 'primereact/panel';
 
 export default function Article(props) {
     return (
